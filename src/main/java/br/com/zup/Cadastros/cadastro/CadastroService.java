@@ -23,7 +23,7 @@ public class CadastroService {
             return cadastroRepository.findAllByMoraSozinho(moraSozinho);
         }else if (temPet){
             return cadastroRepository.findAllByTemPet(temPet);
-        }else if (idade != 0){
+        }else if (idade != null){
             return cadastroRepository.findAllByIdade(idade);
         }
         Iterable<Cadastro> cadastros = cadastroRepository.findAll();
