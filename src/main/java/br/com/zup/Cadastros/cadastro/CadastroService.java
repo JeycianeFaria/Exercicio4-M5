@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CadastroService {
@@ -27,6 +28,15 @@ public class CadastroService {
         }
         Iterable<Cadastro> cadastros = cadastroRepository.findAll();
         return (List<Cadastro>) cadastros;
+    }
+
+    public Cadastro buscarCadastroId(String cpf){
+        Optional<Cadastro> cadastro = cadastroRepository.findById(cpf);
+        if (cadastro.isEmpty()){
+            throw  new RuntimeException("Cadastro não encontrado");
+        }
+
+        return cadastro.get();
     }
 
 }
