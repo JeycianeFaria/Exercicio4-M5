@@ -1,33 +1,36 @@
-package br.com.zup.Cadastros.cadastro;
+package br.com.zup.Cadastros.cadastro.dtos;
 
-import javax.persistence.*;
-import java.time.LocalDate;
+import javax.persistence.Column;
 
-@Entity
-@Table(name = "cadastros")
-public class Cadastro {
-    @Id
+public class CadastroDTO {
+
     private String cpf;
-    @Column(nullable = false)
     private String nome;
-    @Column(nullable = false)
     private String sobrenome;
     private String cidade;
     private String bairro;
-    @Column(name = "nome_do_parente_proximo")
     private String nomeDoParenteProximo;
-    @Column(name = "mora_sozinho")
     private boolean moraSozinho;
-    @Column(name = "tem_pet")
     private boolean temPet;
     private int idade;
-    private LocalDate dataDoCadastro;
 
-    public Cadastro() {
+
+    public CadastroDTO() {
     }
 
-    public Cadastro(String cpf, String nome, String sobrenome, String cidade, String bairro, String nomeDoParenteProximo, boolean moraSozinho, boolean temPet, int idade) {
+    public CadastroDTO(String cpf, String nome, String sobrenome, String cidade, String bairro,
+                       String nomeDoParenteProximo, boolean moraSozinho, boolean temPet, int idade) {
+        this.cpf = cpf;
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.cidade = cidade;
+        this.bairro = bairro;
+        this.nomeDoParenteProximo = nomeDoParenteProximo;
+        this.moraSozinho = moraSozinho;
+        this.temPet = temPet;
+        this.idade = idade;
     }
+
 
     public String getCpf() {
         return cpf;
@@ -101,11 +104,4 @@ public class Cadastro {
         this.idade = idade;
     }
 
-    public LocalDate getDataDoCadastro() {
-        return dataDoCadastro;
-    }
-
-    public void setDataDoCadastro(LocalDate dataDoCadastro) {
-        this.dataDoCadastro = dataDoCadastro;
-    }
 }
