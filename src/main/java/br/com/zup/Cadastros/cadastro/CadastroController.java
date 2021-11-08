@@ -3,6 +3,7 @@ package br.com.zup.Cadastros.cadastro;
 import br.com.zup.Cadastros.cadastro.dtos.CadastroDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,12 +23,20 @@ public class CadastroController {
      */
 
     @PostMapping
-    public Cadastro fazerCadastro(CadastroDTO cadastroDTO){
-        Cadastro cadastro = new Cadastro(cadastroDTO.getCpf(),cadastroDTO.getNome(),cadastroDTO.getSobrenome(),
-                cadastroDTO.getCidade(), cadastroDTO.getBairro(),cadastroDTO.getNomeDoParenteProximo(),
-                cadastroDTO.isMoraSozinho(),cadastroDTO.isTemPet(),cadastroDTO.getIdade());
+    public void fazerCadastro(@RequestBody CadastroDTO cadastroDTO){
+        Cadastro cadastro = new Cadastro();
 
-        return cadastro;
+        cadastro.setCpf(cadastroDTO.getCpf());
+        cadastro.setNome(cadastroDTO.getNome());
+        cadastro.setSobrenome(cadastroDTO.getSobrenome());
+        cadastro.setCidade(cadastroDTO.getCidade());
+        cadastro.setBairro(cadastroDTO.getBairro());
+        cadastro.setNomeDoParenteProximo(cadastroDTO.getNomeDoParenteProximo());
+        cadastro.setMoraSozinho(cadastroDTO.isMoraSozinho());
+        cadastro.setTemPet(cadastroDTO.isTemPet());
+        cadastro.setIdade(cadastroDTO.getIdade());
+
+        cadastroService.cadastrarPessoa(cadastro);
     }
 
 }
