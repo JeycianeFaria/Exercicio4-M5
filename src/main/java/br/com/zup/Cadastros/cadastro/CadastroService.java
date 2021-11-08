@@ -17,4 +17,16 @@ public class CadastroService {
         cadastroRepository.save(cadastroRecebido);
     }
 
+    public List<Cadastro>  exibirTodosOsCadastros(boolean moraSozinho, boolean temPet, Integer idade){
+        if (moraSozinho){
+            return cadastroRepository.findAllByMoraSozinho(moraSozinho);
+        }else if (temPet){
+            return cadastroRepository.findAllByTemPet(temPet);
+        }else if (idade != 0){
+            return cadastroRepository.findAllByIdade(idade);
+        }
+        Iterable<Cadastro> cadastros = cadastroRepository.findAll();
+        return (List<Cadastro>) cadastros;
+    }
+
 }
