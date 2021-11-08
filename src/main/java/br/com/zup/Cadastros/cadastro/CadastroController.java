@@ -66,5 +66,8 @@ public class CadastroController {
         return cadastroId;
     }
 
-
+    @DeleteMapping("/{cpf}")
+    public void excluirCadastro(@PathVariable String cpf){
+        cadastroService.deletarCadastro(cpf);
+    }
 }
