@@ -1,9 +1,6 @@
 package br.com.zup.Cadastros.cadastro;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -17,10 +14,14 @@ public class Cadastro {
     private String sobrenome;
     private String cidade;
     private String bairro;
+    @Column(name = "nome_do_parente_proximo")
     private String nomeDoParenteProximo;
+    @Column(name = "mora_sozinho")
     private boolean moraSozinho;
+    @Column(name = "tem_pet")
     private boolean temPet;
     private int idade;
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private LocalDate dataDoCadastro;
 
     public Cadastro() {
