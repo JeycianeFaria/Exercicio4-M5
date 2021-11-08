@@ -57,5 +57,14 @@ public class CadastroController {
         return pessoasCadastradas;
     }
 
+    @GetMapping("/{cpf}")
+    public SaidaCadastrosDTO cadastroID(@PathVariable String cpf){
+
+        Cadastro cadastro = cadastroService.buscarCadastroId(cpf);
+        SaidaCadastrosDTO cadastroId = new SaidaCadastrosDTO(cadastro.getCpf(),cadastro.getNome(),cadastro.getSobrenome());
+
+        return cadastroId;
+    }
+
 
 }
