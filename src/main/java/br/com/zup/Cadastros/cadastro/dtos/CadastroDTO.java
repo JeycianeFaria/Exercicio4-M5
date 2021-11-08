@@ -1,17 +1,32 @@
 package br.com.zup.Cadastros.cadastro.dtos;
 
-import javax.persistence.Column;
+import org.hibernate.validator.constraints.br.CPF;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 public class CadastroDTO {
 
+    @CPF(message = "CPDF inválido")
     private String cpf;
+    @Size(min = 3, message = "O nome deve ter no mínimo 3 caracteres")
+    @NotBlank
     private String nome;
+    @Size(min = 2,message = "O sobrenome deve  ter no mínimo 2 caracteres")
+    @NotBlank
     private String sobrenome;
+    @Size(min = 3, message = "A cidade deve ter no mínimo 3 caracteres")
+    @NotBlank
     private String cidade;
+    @Size(min = 3, message = "O bairro deve ter no mínimo 3 caracteres")
+    @NotBlank
     private String bairro;
     private String nomeDoParenteProximo;
+    @NotBlank
     private boolean moraSozinho;
+    @NotBlank
     private boolean temPet;
+    @NotBlank
     private int idade;
 
 
