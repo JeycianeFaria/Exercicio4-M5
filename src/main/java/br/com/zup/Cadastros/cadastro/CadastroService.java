@@ -39,4 +39,9 @@ public class CadastroService {
         return cadastro.get();
     }
 
+    public void deletarCadastro(String cpf){
+        Cadastro deletarCadastro = buscarCadastroId(cpf);
+        cadastroRepository.delete(deletarCadastro);
+    }
+
 }
