@@ -2,6 +2,7 @@ package br.com.zup.Cadastros.cadastro.dtos;
 
 import org.hibernate.validator.constraints.br.CPF;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -22,11 +23,9 @@ public class CadastroDTO {
     @NotBlank
     private String bairro;
     private String nomeDoParenteProximo;
-    @NotBlank
     private boolean moraSozinho;
-    @NotBlank
     private boolean temPet;
-    @NotBlank
+    @Min(0)
     private int idade;
 
 
