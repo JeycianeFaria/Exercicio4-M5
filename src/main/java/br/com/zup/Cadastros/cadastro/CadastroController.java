@@ -5,6 +5,7 @@ import br.com.zup.Cadastros.cadastro.dtos.SaidaCadastrosDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class CadastroController {
      */
 
     @PostMapping
-    public void fazerCadastro(@RequestBody CadastroDTO cadastroDTO){
+    public void fazerCadastro(@RequestBody @Valid CadastroDTO cadastroDTO){
         Cadastro cadastro = new Cadastro();
 
         cadastro.setCpf(cadastroDTO.getCpf());
