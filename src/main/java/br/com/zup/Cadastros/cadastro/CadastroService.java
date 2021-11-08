@@ -9,6 +9,8 @@ public class CadastroService {
     @Autowired
     private CadastroRepository cadastroRepository;
 
-
+    public void cadastrarPessoa(Cadastro cadastroRecebido){
+        cadastroRepository.save(cadastroRecebido);
+    }
 
 }

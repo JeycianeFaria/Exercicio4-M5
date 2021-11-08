@@ -1,5 +1,6 @@
 package br.com.zup.Cadastros.cadastro;
 
+import br.com.zup.Cadastros.cadastro.dtos.CadastroDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,13 @@ public class CadastroController {
      todo 4 - faça um metodo que retorna TODOS os dados de um usuario pesquisado pelo ID.
      */
 
+    @PostMapping
+    public Cadastro fazerCadastro(CadastroDTO cadastroDTO){
+        Cadastro cadastro = new Cadastro(cadastroDTO.getCpf(),cadastroDTO.getNome(),cadastroDTO.getSobrenome(),
+                cadastroDTO.getCidade(), cadastroDTO.getBairro(),cadastroDTO.getNomeDoParenteProximo(),
+                cadastroDTO.isMoraSozinho(),cadastroDTO.isTemPet(),cadastroDTO.getIdade());
 
+        return cadastro;
+    }
 
 }

@@ -21,10 +21,12 @@ public class Cadastro {
     @Column(name = "tem_pet")
     private boolean temPet;
     private int idade;
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private LocalDate dataDoCadastro;
 
     public Cadastro() {
+    }
+
+    public Cadastro(String cpf, String nome, String sobrenome, String cidade, String bairro, String nomeDoParenteProximo, boolean moraSozinho, boolean temPet, int idade) {
     }
 
     public String getCpf() {
