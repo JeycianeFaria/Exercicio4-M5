@@ -1,6 +1,7 @@
 package br.com.zup.Cadastros.cadastro;
 
 import br.com.zup.Cadastros.cadastro.exceptions.CadastroNaoEncontrado;
+import br.com.zup.Cadastros.cadastro.exceptions.CpfJaCadastrado;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,12 @@ public class CadastroService {
     private CadastroRepository cadastroRepository;
 
     public void cadastrarPessoa(Cadastro cadastroRecebido){
+        Cadastro cadastrarPessoa = buscarCadastroId(cadastroRecebido.getCpf());
+
+        if (cadastrarPessoa != null){
+            throw new CpfJaCadastrado("CPF já cadastrado");
+        }
+
         cadastroRecebido.setDataDoCadastro(LocalDate.now());
         cadastroRepository.save(cadastroRecebido);
     }
