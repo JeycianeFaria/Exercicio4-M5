@@ -1,8 +1,10 @@
 package br.com.zup.Cadastros.config;
 
+
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import br.com.zup.Cadastros.cadastro.exceptions.CadastroNaoEncontrado;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -25,6 +27,13 @@ public class ControllerAdvisor {
         }
 
         return errosValidacao;
+    }
+
+
+    @ExceptionHandler(CadastroNaoEncontrado.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public MensagemErro manipularCadastroNaoEncontrado(CadastroNaoEncontrado exception) {
+        return new MensagemErro(exception.getMessage());
     }
 
 }
