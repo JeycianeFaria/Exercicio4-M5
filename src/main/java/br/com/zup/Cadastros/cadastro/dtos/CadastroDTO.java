@@ -1,5 +1,6 @@
 package br.com.zup.Cadastros.cadastro.dtos;
 
+import org.hibernate.validator.constraints.UniqueElements;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.validation.constraints.Min;
