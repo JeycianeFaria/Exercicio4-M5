@@ -10,21 +10,21 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @RestControllerAdvice
 public class ControllerAdvisor {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
-    public List<ErroValidacao> manipularErrosDeValidacao(MethodArgumentNotValidException exception){
+    public List<ErroValidacao> manipularErrosDeValidacao(MethodArgumentNotValidException exception) {
         List<ErroValidacao> errosValidacao = new ArrayList<>();
 
-        for (FieldError referencia: exception.getFieldErrors()){
-            ErroValidacao erroValidacao = new ErroValidacao(referencia.getField(),referencia.getDefaultMessage());
+        for (FieldError referencia : exception.getFieldErrors()) {
+            ErroValidacao erroValidacao = new ErroValidacao(referencia.getField(), referencia.getDefaultMessage());
             errosValidacao.add(erroValidacao);
         }
 
         return errosValidacao;
     }
-
 
 }
