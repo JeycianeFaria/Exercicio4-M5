@@ -7,4 +7,7 @@ import org.springframework.stereotype.Service;
 public class CadastroService {
     @Autowired
     private CadastroRepository cadastroRepository;
+
+
+
 }
