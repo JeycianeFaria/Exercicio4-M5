@@ -1,6 +1,6 @@
 package br.com.zup.Cadastros.cadastro;
 
-import br.com.zup.Cadastros.cadastro.dtos.CadastroDTO;
+import br.com.zup.Cadastros.cadastro.exceptions.CadastroNaoEncontrado;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +33,7 @@ public class CadastroService {
     public Cadastro buscarCadastroId(String cpf){
         Optional<Cadastro> cadastro = cadastroRepository.findById(cpf);
         if (cadastro.isEmpty()){
-            throw  new RuntimeException("Cadastro não encontrado");
+            throw  new CadastroNaoEncontrado("Cadastro não encontrado");
         }
 
         return cadastro.get();
