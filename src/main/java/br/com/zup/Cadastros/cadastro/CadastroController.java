@@ -1,9 +1,11 @@
 package br.com.zup.Cadastros.cadastro;
 
 import br.com.zup.Cadastros.cadastro.dtos.CadastroDTO;
+import br.com.zup.Cadastros.cadastro.dtos.SaidaCadastrosDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -36,6 +38,23 @@ public class CadastroController {
         cadastro.setIdade(cadastroDTO.getIdade());
 
         cadastroService.cadastrarPessoa(cadastro);
+    }
+
+    @GetMapping
+    public List<SaidaCadastrosDTO> exibirPessoasCadastradas(@RequestParam
+                                                                        (required = false, name = "mora_sozinho")
+                                                                        boolean moraSozinho,
+                                                            @RequestParam(required = false, name = "tem_pet")
+                                                                    boolean temPet,
+                                                            @RequestParam(required = false)Integer idade){
+        List<SaidaCadastrosDTO> pessoasCadastradas = new ArrayList<>();
+
+        for (Cadastro referencia:cadastroService.exibirTodosOsCadastros(moraSozinho,temPet,idade)){
+            pessoasCadastradas.add(new SaidaCadastrosDTO(referencia.getCpf(),referencia.getNome(),
+                    referencia.getSobrenome()));
+        }
+
+        return pessoasCadastradas;
     }
 
 
