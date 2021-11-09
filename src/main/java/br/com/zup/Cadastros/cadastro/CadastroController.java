@@ -71,6 +71,7 @@ public class CadastroController {
     }
 
     @DeleteMapping("/{cpf}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void excluirCadastro(@PathVariable String cpf) {
         cadastroService.deletarCadastro(cpf);
     }
