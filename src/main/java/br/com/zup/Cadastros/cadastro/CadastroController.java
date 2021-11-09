@@ -27,7 +27,7 @@ public class CadastroController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void fazerCadastro(@RequestBody @Valid CadastroDTO cadastroDTO){
+    public void fazerCadastro(@RequestBody @Valid CadastroDTO cadastroDTO) {
         Cadastro cadastro = new Cadastro();
 
         cadastro.setCpf(cadastroDTO.getCpf());
@@ -41,19 +41,21 @@ public class CadastroController {
         cadastro.setIdade(cadastroDTO.getIdade());
 
         cadastroService.cadastrarPessoa(cadastro);
+
     }
 
     @GetMapping
     public List<SaidaCadastrosDTO> exibirPessoasCadastradas(@RequestParam
-                                                                        (required = false, name = "mora_sozinho")
-                                                                        boolean moraSozinho,
+                                                                    (required = false, name = "mora_sozinho")
+                                                                    boolean moraSozinho,
                                                             @RequestParam(required = false, name = "tem_pet")
                                                                     boolean temPet,
-                                                            @RequestParam(required = false)Integer idade){
+                                                            @RequestParam(required = false) Integer idade) {
+
         List<SaidaCadastrosDTO> pessoasCadastradas = new ArrayList<>();
 
-        for (Cadastro referencia:cadastroService.exibirTodosOsCadastros(moraSozinho,temPet,idade)){
-            pessoasCadastradas.add(new SaidaCadastrosDTO(referencia.getCpf(),referencia.getNome(),
+        for (Cadastro referencia : cadastroService.exibirTodosOsCadastros(moraSozinho, temPet, idade)) {
+            pessoasCadastradas.add(new SaidaCadastrosDTO(referencia.getCpf(), referencia.getNome(),
                     referencia.getSobrenome()));
         }
 
@@ -61,16 +63,16 @@ public class CadastroController {
     }
 
     @GetMapping("/{cpf}")
-    public SaidaCadastrosDTO cadastroID(@PathVariable String cpf){
-
+    public SaidaCadastrosDTO cadastroID(@PathVariable String cpf) {
         Cadastro cadastro = cadastroService.buscarCadastroId(cpf);
-        SaidaCadastrosDTO cadastroId = new SaidaCadastrosDTO(cadastro.getCpf(),cadastro.getNome(),cadastro.getSobrenome());
+        SaidaCadastrosDTO cadastroId = new SaidaCadastrosDTO(cadastro.getCpf(), cadastro.getNome(), cadastro.getSobrenome());
 
         return cadastroId;
     }
 
     @DeleteMapping("/{cpf}")
-    public void excluirCadastro(@PathVariable String cpf){
+    public void excluirCadastro(@PathVariable String cpf) {
         cadastroService.deletarCadastro(cpf);
     }
+
 }
