@@ -47,9 +47,9 @@ public class CadastroController {
     @GetMapping
     public List<SaidaCadastrosDTO> exibirPessoasCadastradas(@RequestParam
                                                                     (required = false, name = "mora_sozinho")
-                                                                    boolean moraSozinho,
+                                                                    Boolean moraSozinho,
                                                             @RequestParam(required = false, name = "tem_pet")
-                                                                    boolean temPet,
+                                                                    Boolean temPet,
                                                             @RequestParam(required = false) Integer idade) {
 
         List<SaidaCadastrosDTO> pessoasCadastradas = new ArrayList<>();

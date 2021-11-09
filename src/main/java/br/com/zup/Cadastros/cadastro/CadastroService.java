@@ -29,11 +29,11 @@ public class CadastroService {
 
     }
 
-    public List<Cadastro> exibirTodosOsCadastros(boolean moraSozinho, boolean temPet, Integer idade) {
+    public List<Cadastro> exibirTodosOsCadastros(Boolean moraSozinho, Boolean temPet, Integer idade) {
 
-        if (moraSozinho) {
+        if (moraSozinho != null) {
             return cadastroRepository.findAllByMoraSozinho(moraSozinho);
-        } else if (temPet) {
+        } else if (temPet != null) {
             return cadastroRepository.findAllByTemPet(temPet);
         } else if (idade != null) {
             return cadastroRepository.findAllByIdade(idade);
