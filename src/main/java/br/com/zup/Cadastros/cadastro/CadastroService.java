@@ -14,13 +14,16 @@ public class CadastroService {
     @Autowired
     private CadastroRepository cadastroRepository;
 
-    public void cadastrarPessoa(Cadastro cadastroRecebido){
-        Cadastro cadastrarPessoa = buscarCadastroId(cadastroRecebido.getCpf());
-
-        if (cadastrarPessoa != null){
+    public void buscarCadastro(String cpf){
+        Optional<Cadastro> cadastro = cadastroRepository.findById(cpf);
+        if (cadastro.isPresent()){
             throw new CpfJaCadastrado("CPF já cadastrado");
         }
 
+    }
+
+    public void cadastrarPessoa(Cadastro cadastroRecebido){
+        buscarCadastro(cadastroRecebido.getCpf());
         cadastroRecebido.setDataDoCadastro(LocalDate.now());
         cadastroRepository.save(cadastroRecebido);
     }
