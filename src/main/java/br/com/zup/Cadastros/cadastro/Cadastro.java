@@ -6,6 +6,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "cadastros")
 public class Cadastro {
+
     @Id
     private String cpf;
     @Column(nullable = false)
@@ -23,11 +24,13 @@ public class Cadastro {
     private int idade;
     private LocalDate dataDoCadastro;
 
+
     public Cadastro() {
     }
 
     public Cadastro(String cpf, String nome, String sobrenome, String cidade, String bairro, String nomeDoParenteProximo, boolean moraSozinho, boolean temPet, int idade) {
     }
+
 
     public String getCpf() {
         return cpf;

@@ -40,7 +40,7 @@ public class ControllerAdvisor {
 
     @ExceptionHandler(CpfJaCadastrado.class)
     @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
-    public MensagemErro manipularCpfJaCadastrado(CpfJaCadastrado exception){
+    public MensagemErro manipularCpfJaCadastrado(CpfJaCadastrado exception) {
         return new MensagemErro(exception.getMessage());
     }
 
