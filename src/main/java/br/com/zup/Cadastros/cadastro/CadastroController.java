@@ -23,18 +23,7 @@ public class CadastroController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void fazerCadastro(@RequestBody @Valid CadastroDTO cadastroDTO) {
-        Cadastro cadastro = new Cadastro();
-
-        cadastro.setCpf(cadastroDTO.getCpf());
-        cadastro.setNome(cadastroDTO.getNome());
-        cadastro.setSobrenome(cadastroDTO.getSobrenome());
-        cadastro.setCidade(cadastroDTO.getCidade());
-        cadastro.setBairro(cadastroDTO.getBairro());
-        cadastro.setNomeDoParenteProximo(cadastroDTO.getNomeDoParenteProximo());
-        cadastro.setMoraSozinho(cadastroDTO.isMoraSozinho());
-        cadastro.setTemPet(cadastroDTO.isTemPet());
-        cadastro.setIdade(cadastroDTO.getIdade());
-
+        Cadastro cadastro = modelMapper.map(cadastroDTO, Cadastro.class);
         cadastroService.cadastrarPessoa(cadastro);
 
     }
@@ -50,8 +39,8 @@ public class CadastroController {
         List<SaidaCadastrosDTO> pessoasCadastradas = new ArrayList<>();
 
         for (Cadastro referencia : cadastroService.exibirTodosOsCadastros(moraSozinho, temPet, idade)) {
-            pessoasCadastradas.add(new SaidaCadastrosDTO(referencia.getCpf(), referencia.getNome(),
-                    referencia.getSobrenome()));
+            SaidaCadastrosDTO saidaCadastrosDTO = modelMapper.map(referencia, SaidaCadastrosDTO.class);
+            pessoasCadastradas.add(saidaCadastrosDTO);
         }
 
         return pessoasCadastradas;
