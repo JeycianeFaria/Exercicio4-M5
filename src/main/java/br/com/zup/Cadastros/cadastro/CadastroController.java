@@ -2,6 +2,7 @@ package br.com.zup.Cadastros.cadastro;
 
 import br.com.zup.Cadastros.cadastro.dtos.CadastroDTO;
 import br.com.zup.Cadastros.cadastro.dtos.SaidaCadastrosDTO;
+import br.com.zup.Cadastros.cadastro.dtos.SaidaDetalhadaCadastroDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -47,9 +48,9 @@ public class CadastroController {
     }
 
     @GetMapping("/{cpf}")
-    public SaidaCadastrosDTO cadastroID(@PathVariable String cpf) {
+    public SaidaDetalhadaCadastroDTO cadastroID(@PathVariable String cpf) {
         Cadastro cadastro = cadastroService.buscarCadastroId(cpf);
-        SaidaCadastrosDTO cadastroId = new SaidaCadastrosDTO(cadastro.getCpf(), cadastro.getNome(), cadastro.getSobrenome());
+        SaidaDetalhadaCadastroDTO cadastroId = modelMapper.map(cadastro, SaidaDetalhadaCadastroDTO.class);
 
         return cadastroId;
     }
